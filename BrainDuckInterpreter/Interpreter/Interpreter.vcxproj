@@ -129,6 +129,10 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\cscn71030-sec1-group5-archived\Interpreter\abstractSyntaxTree.h" />
+    <ClInclude Include="..\..\..\cscn71030-sec1-group5-archived\Interpreter\parser.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
