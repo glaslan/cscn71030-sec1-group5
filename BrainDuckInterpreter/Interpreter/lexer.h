@@ -1,5 +1,5 @@
 #pragma once
-// Destiny - Lexer
+// Destiny - Lexer pls
 
 // types of tokens 
 typedef enum {
