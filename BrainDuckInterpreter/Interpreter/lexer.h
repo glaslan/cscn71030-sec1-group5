@@ -11,6 +11,9 @@ typedef enum {
 	OUTPUT,			// .
 	JUMP_PAST,		// ]
 	JUMP_BACK,		// [
+	DOUBLE,			// *
+	HALF,			// /
+	RANDOM,			// ?
 	END_TOKEN		// reached end of file 
 }tokenType;
 
@@ -20,7 +23,7 @@ typedef struct token {
 }TOKEN;
 
 // lexer thingy struct
-typedef struct lexer {
+typedef struct lexer { 
 	char* input;
 	int position;
 	char current;
