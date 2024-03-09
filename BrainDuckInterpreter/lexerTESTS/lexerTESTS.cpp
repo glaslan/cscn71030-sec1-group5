@@ -1,0 +1,16 @@
+#include "pch.h"
+#include "CppUnitTest.h"
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace lexerTESTS
+{
+	TEST_CLASS(lexerTESTS)
+	{
+	public:
+		
+		TEST_METHOD(TestMethod1)
+		{
+		}
+	};
+}
