@@ -1,7 +1,11 @@
 #pragma once
+#include <stdbool.h>
+#include "programQueue.h"
 
-void parseArguments();
-void parseProgram();
+
+bool parseArguments(char* argVal, int argNum);
+PPROGRAMQUEUE parseProgram();
+void handleError();
 
 void parseShiftRight();
 void parseShiftLeft();
@@ -19,3 +23,5 @@ void parseDouble();
 void parseHalve();
 
 void parseRandom();
+
+void errorTooManyArgs();

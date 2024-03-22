@@ -1,24 +1,25 @@
 #pragma once
 #include <stdbool.h>
+//#include "lexer.h"
 
-typedef struct node {
-	int token;
-	struct node* left;
-	struct node* right;
-}NODE, *PNODE;
+typedef enum token {
+	INCREMENT,
+	DECREMENT
+} TOKEN;
 
-typedef struct program {
-	struct node* root;
-}PROGRAM, *PPROGRAM;
+typedef struct treeNode {
+	TOKEN token;
+	int value;
+	struct treeNode* right;
+	struct treeNode* left;
+}TREENODE, *PTREENODE;
 
-PPROGRAM createAST();
+PTREENODE createNode(TOKEN);
 
-PNODE createNode(char*);
+PTREENODE addNode(PTREENODE, TOKEN);
 
-bool addNode(PPROGRAM, PNODE);
+bool printAST(PTREENODE);
 
-bool astHasNodes(PPROGRAM);
+PTREENODE removeNode(PTREENODE);
 
-PNODE removeNode(PPROGRAM);
-
-void destroyAST(PPROGRAM);
+void destroyAST(PTREENODE);
