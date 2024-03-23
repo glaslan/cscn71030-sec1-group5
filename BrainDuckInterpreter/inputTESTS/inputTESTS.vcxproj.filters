@@ -18,12 +18,12 @@
     <ClCompile Include="inputTESTS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="..\Interpreter\lexer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="..\Interpreter\lexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

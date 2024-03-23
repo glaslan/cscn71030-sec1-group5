@@ -16,7 +16,7 @@ void initQueue();
 
 int isEmpty(link h);
 
-void addToQueue(link h);
+void addToQueue(link* h, QNODE n);
 
 void printQueue(link h);
 

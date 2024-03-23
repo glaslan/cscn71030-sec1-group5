@@ -29,7 +29,7 @@ typedef struct token {
 }TOKEN;
 
 // get user input 
-char* getInput(char* input[]);
+char* getInput();
 
 // extract the chars 
 char extractChar(char input[], int* index);

@@ -5,10 +5,11 @@
 #include <string.h>
  
 // get user input
-char* getInput(char* input[]){
-	char input[100];
+char* getInput(){
+	char* input[100];
 	printf("Please enter a string: \n");
 	fgets(input, sizeof(input), stdin);
+	return input;
 
 }
 
@@ -30,7 +31,58 @@ ITEM createItem(char a) {
 }
 
 // get the token type 
-TOKENTYPE getType(ITEM i);
+TOKENTYPE getType(ITEM i) {
+	char input = i.data;
+	TOKENTYPE t;
+	switch (input)
+	{
+	case '<':
+		t = MOVE_LEFT;
+		break;
+	case '>':
+		t = MOVE_RIGHT;
+		break;
+	case '+':
+		t = INCREMENT;
+		break;
+	case '-':
+		t = DECREMENT;
+		break;
+	case ',':
+		t = INPUT;
+		break;
+	case '.':
+		t = OUTPUT;
+		break;
+	case ']':
+		t = JUMP_PAST;
+		break;
+	case '[':
+		t = JUMP_BACK;
+		break;
+	case '*':
+		t = DOUBLE;
+		break;
+	case '/':
+		t = HALF;
+		break;
+	case '?':
+		t = RANDOM;
+		break;
+	case '\0':
+		t = DOUBLE;
+		break;
+	default:
+		t = INVALID;
+		break;
+	}
+	return t;
+}
 
 // create a token 
-TOKEN createToken(ITEM i, TOKENTYPE t);
+TOKEN createToken(ITEM item, TOKENTYPE type) {
+	TOKEN token = { 0 };
+	token.i = item;
+	token.t = type;
+	return token;
+}
