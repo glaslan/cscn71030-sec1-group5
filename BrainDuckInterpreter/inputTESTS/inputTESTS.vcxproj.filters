@@ -15,21 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.c">
+    <ClCompile Include="inputTESTS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lexer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="charQueue.c">
+    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\cscn71030-sec1-group5-archived\Interpreter\lexer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="charQueue.h">
+    <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

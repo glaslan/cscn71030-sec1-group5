@@ -1,16 +1,15 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 
-extern "C" 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
-namespace lexerTESTS
+namespace queueTESTS
 {
-	TEST_CLASS(lexerTESTS)
+	TEST_CLASS(queueTESTS)
 	{
 	public:
 		
-		TEST_METHOD()
+		TEST_METHOD(TestMethod1)
 		{
 		}
 	};

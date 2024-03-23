@@ -1,8 +1,12 @@
 #pragma once
 // Destiny - Lexer pls
 
+typedef struct item {
+	char data;
+} ITEM;
+
 // types of tokens 
-typedef enum {
+typedef enum tokenType{
 	MOVE_LEFT,		// <
 	MOVE_RIGHT,		// >
 	INCREMENT,		// +
@@ -14,26 +18,34 @@ typedef enum {
 	DOUBLE,			// *
 	HALF,			// /
 	RANDOM,			// ?
-	END_TOKEN		// reached end of file 
-}tokenType;
+	END_TOKEN,		// reached end of file 
+	INVALID
+} TOKENTYPE;
 
 // actual token struct
 typedef struct token {
-	tokenType t;
+	ITEM i;
+	TOKENTYPE t;
 }TOKEN;
 
-// lexer thingy struct
-typedef struct lexer { 
-	char* input;
-	int position;
-	char current;
-}LEXER;
+// get user input 
+char* getInput(char* input[]);
 
-// initialize the lexer (i.e. set the starting point)
-void initLexer();
+// extract the chars 
+char extractChar(char input[], int* index);
 
-// advance to the next char 
-void goToNext();
+// create an item from a char 
+ITEM createItem(char a);
 
-// turn the char into a token 
-TOKEN getToken(LEXER* l);
+// get the token type 
+TOKENTYPE getType(ITEM i);
+
+// create a token 
+TOKEN createToken(ITEM i, TOKENTYPE t);
+
+
+
+
+
+
+
