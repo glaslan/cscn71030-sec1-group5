@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "CppUnitTest.h"
 
 extern "C" {
@@ -12,8 +12,20 @@ namespace queueTESTS
 	{
 	public:
 		
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(isEmpty_True)
 		{
+			initQueue();
+			Assert::IsTrue(isEmpty());
+		}
+		
+		TEST_METHOD(isEmpty_False)
+		{
+			initQueue();
+			ITEM i = createItem('-');
+			TOKEN t = createToken(i, getType(i));
+			enqueue(createNode(t));
+			Assert::IsFalse(isEmpty());
+			dequeue();
 		}
 	};
 }

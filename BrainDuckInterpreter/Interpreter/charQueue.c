@@ -36,20 +36,21 @@ int isEmpty() {
 	return pHead == NULL;
 }
 
-//QNODE dequeue() {
-//	if (isEmpty()) {
-//		printf("Queue is empty!\n");
-//		exit(EXIT_FAILURE);
-//	}
-//	QNODE removed = *pHead;
-//	QNODE* temp = pHead;
-//	pHead = pHead->next;
-//	free(temp);
-//	if (pHead == NULL) {
-//		pTail = NULL;
-//	}
-//	return removed;
-//}
+// used for unit testing
+QNODE dequeue() {
+	if (isEmpty()) {
+		printf("Queue is empty!\n");
+		exit(EXIT_FAILURE);
+	}
+	QNODE removed = *pHead;
+	QNODE* temp = pHead;
+	pHead = pHead->next;
+	free(temp);
+	if (pHead == NULL) {
+		pTail = NULL;
+	}
+	return removed;
+}
 
 void printQueue() {
 	QNODE* current = pHead;

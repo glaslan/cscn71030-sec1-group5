@@ -10,7 +10,7 @@ void initQueue();
 QNODE createNode(TOKEN t);
 void enqueue(QNODE n);
 int isEmpty();
-// QNODE dequeue();
+QNODE dequeue();
 void printQueue();
 
 

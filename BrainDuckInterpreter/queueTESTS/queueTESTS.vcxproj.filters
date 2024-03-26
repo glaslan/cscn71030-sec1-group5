@@ -18,18 +18,18 @@
     <ClCompile Include="queueTESTS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
+    <ClCompile Include="..\Interpreter\charQueue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Interpreter\charQueue.c">
+    <ClCompile Include="..\Interpreter\lexer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h">
+    <ClInclude Include="..\Interpreter\charQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Interpreter\charQueue.h">
+    <ClInclude Include="..\Interpreter\lexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
