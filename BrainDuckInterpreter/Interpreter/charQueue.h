@@ -1,25 +1,16 @@
 #pragma once
 #include "lexer.h"
 
-typedef struct charQueue* link;
-
-typedef struct charQueue {
+typedef struct qnode {
 	TOKEN token;
-	link next;
-}QNODE;
-
-QNODE createNode(TOKEN token);
-
-link newLink(link h, QNODE n);
+	struct qnode* next;
+} QNODE;
 
 void initQueue();
+QNODE createNode(TOKEN t);
+void enqueue(QNODE n);
+int isEmpty();
+// QNODE dequeue();
+void printQueue();
 
-int isEmpty(link h);
-
-void addToQueue(link* h, QNODE n);
-
-void printQueue(link h);
-
-// might not need this 
-link deQueue();
 

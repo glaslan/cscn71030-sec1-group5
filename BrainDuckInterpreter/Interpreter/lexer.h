@@ -22,6 +22,8 @@ typedef enum tokenType{
 	INVALID
 } TOKENTYPE;
 
+extern const char* TOKENNAME[];
+
 // actual token struct
 typedef struct token {
 	ITEM i;
@@ -42,6 +44,8 @@ TOKENTYPE getType(ITEM i);
 
 // create a token 
 TOKEN createToken(ITEM i, TOKENTYPE t);
+
+
 
 
 

@@ -9,37 +9,59 @@ void initQueue() {
 }
 
 QNODE createNode(TOKEN t) {
-	QNODE* newNode = (link)malloc(sizeof(QNODE));
+	QNODE* newNode = (QNODE*)malloc(sizeof(QNODE));
 	newNode->token = t;
 	newNode->next = NULL;
 	return *newNode;
 }
 
-link newLink(link h, QNODE n) {
-	link new = (link)malloc(sizeof(QNODE));
+// for adding nodes to the queue
+void enqueue(QNODE n) {
+	QNODE* new = (QNODE*)malloc(sizeof(QNODE));
 	if (new == NULL) {
-
+		printf("Error allocating node memory.\n");
 		exit(EXIT_FAILURE);
 	}
 	*new = n;
-	new->next = h;
-	return new;
-}
-
-int isEmpty(link h) {
-	return h == NULL;
-}
-
-void addToQueue(link* h, QNODE n) {
-	*h = newLink(*h, n);
-}
-
-void printQueue(link h) {
-	while (h != NULL) {
-		printf("Character = %c, Type = %d \n", h->token.i, h->token.t);
-		h = h->next;
+	if (pHead == NULL) {
+		pHead = pTail = new;
+	}
+	else {
+		pTail->next = new;
+		pTail = new;
 	}
 }
+
+int isEmpty() {
+	return pHead == NULL;
+}
+
+//QNODE dequeue() {
+//	if (isEmpty()) {
+//		printf("Queue is empty!\n");
+//		exit(EXIT_FAILURE);
+//	}
+//	QNODE removed = *pHead;
+//	QNODE* temp = pHead;
+//	pHead = pHead->next;
+//	free(temp);
+//	if (pHead == NULL) {
+//		pTail = NULL;
+//	}
+//	return removed;
+//}
+
+void printQueue() {
+	QNODE* current = pHead;
+	printf("This is the queue: \n");
+	printf("-----------------------\n");
+
+	while (current != NULL) {
+		printf("Token Data: %c\nTokenType: %s\n\n", current->token.i.data, TOKENNAME[current->token.t]);
+		current = current->next;
+	}
+}
+
 
 
 

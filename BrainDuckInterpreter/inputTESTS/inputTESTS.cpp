@@ -1,7 +1,8 @@
 #include "CppUnitTest.h"
-#include "/Users/ddlou/source/repos/cscn71030-sec1-group5/BrainDuckInterpreter/Interpreter/lexer.h"
 
-extern "C";
+extern "C" {
+#include "../Interpreter/lexer.h"
+}
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

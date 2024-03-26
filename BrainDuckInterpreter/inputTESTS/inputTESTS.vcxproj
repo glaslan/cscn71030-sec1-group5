@@ -99,8 +99,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\ddlou\source\repos\cscn71030-sec1-group5\BrainDuckInterpreter\Interpreter\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\ddlou\OneDrive\Desktop\cscn71030-sec1-group5\BrainDuckInterpreter\Interpreter\x64\Debug\Interpreter.tlog;C:\Users\ddlou\OneDrive\Desktop\cscn71030-sec1-group5\BrainDuckInterpreter\inputTESTS\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>lexer.obj;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

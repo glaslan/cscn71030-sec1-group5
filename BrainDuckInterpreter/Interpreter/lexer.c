@@ -3,12 +3,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+static void removeNewLine(char* buffer) {
+	for (int i = 0; i < strlen(buffer); i++)
+		if (buffer[i] == '\n')
+			buffer[i] = '\0';
+}
  
 // get user input
 char* getInput(){
-	char* input[100];
+	static char input[100];
 	printf("Please enter a string: \n");
-	fgets(input, sizeof(input), stdin);
+	fgets(input, 100, stdin);
+	removeNewLine(input);
 	return input;
 
 }
@@ -17,7 +24,7 @@ char* getInput(){
 char extractChar(char input[], int* index) {
 	char next = input[*index];
 	if (next != '\0') {
-		(*index++);
+		(*index)++;
 	}
 	return next;
 }
@@ -70,7 +77,7 @@ TOKENTYPE getType(ITEM i) {
 		t = RANDOM;
 		break;
 	case '\0':
-		t = DOUBLE;
+		t = END_TOKEN;
 		break;
 	default:
 		t = INVALID;
@@ -86,3 +93,20 @@ TOKEN createToken(ITEM item, TOKENTYPE type) {
 	token.t = type;
 	return token;
 }
+
+// to get the name of the token instead of number 
+const char* TOKENNAME[] = {
+	"MOVE LEFT",
+	"MOVE RIGHT",
+	"INCREMENT",
+	"DECREMENT",
+	"INPUT",
+	"OUTPUT",
+	"JUMP PAST",
+	"JUMP BACK",
+	"DOUBLE",
+	"HALF",
+	"RANDOM",
+	"END TOKEN",
+	"INVALID"
+};
