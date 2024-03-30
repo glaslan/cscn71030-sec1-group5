@@ -1,6 +1,7 @@
 #include "abstractSyntaxTree.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include "lexer.h"
 
 
 PTREENODE createNode(TOKEN t) {

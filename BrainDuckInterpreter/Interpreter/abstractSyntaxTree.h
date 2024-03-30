@@ -7,16 +7,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
- /** @struct TOKEN
-  *  @brief Represents a token in the abstract syntax tree.
-  * @warning This is a temporary struct for unit testing. It must be removed during integration.
-  * 
-  */
-typedef struct {
-    int i; /**< Integer value of the token. */
-    char c; /**< Character value of the token. */
-} TOKEN;
-
 /** @struct TREENODE
  *  @brief Represents a node in the abstract syntax tree.
  */

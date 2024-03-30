@@ -1,6 +1,5 @@
 #include "parser.h"
-#include "../../../lexer.h"
-
+#include "lexer.h"
 #include "abstractSyntaxTree.h"
 #include <stdlib.h>
 #include <stdio.h>
