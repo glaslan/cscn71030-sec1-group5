@@ -23,7 +23,7 @@ typedef struct treeNode {
  * @param t The token for the new node.
  * @return Pointer to the newly created node.
  */
-PTREENODE createNode(TOKEN t);
+PTREENODE createTreeNode(TOKEN t);
 
 /**
  * @brief Adds a new node with the given token to the tree.

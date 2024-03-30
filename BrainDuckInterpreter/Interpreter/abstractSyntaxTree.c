@@ -4,7 +4,7 @@
 #include "lexer.h"
 
 
-PTREENODE createNode(TOKEN t) {
+PTREENODE createTreeNode(TOKEN t) {
 	PTREENODE newNode = (PTREENODE)malloc(sizeof(TREENODE));
 	newNode->token = t;
 	newNode->value = 1;
