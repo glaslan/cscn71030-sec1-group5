@@ -15,52 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lexer.c">
+    <ClCompile Include="IntegrationTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="charQueue.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-
-    <ClCompile Include="evaluator.c">
-
-    <ClCompile Include="parser.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="abstractSyntaxTree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="programQueue.c">
-
+    <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-
-    <ClInclude Include="const.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="evaluator.h">
-
-    <ClInclude Include="abstractSyntaxTree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="parser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="programQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="charQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="lexer.h">
-
+    <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

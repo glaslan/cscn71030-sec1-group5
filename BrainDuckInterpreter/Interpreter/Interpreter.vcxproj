@@ -127,8 +127,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+
     <ClCompile Include="evaluator.c" />
+
+    <ClCompile Include="abstractSyntaxTree.c" />
+    <ClCompile Include="charQueue.c" />
+    <ClCompile Include="lexer.c" />
+
     <ClCompile Include="main.c" />
+    <ClCompile Include="parser.c" />
+    <ClCompile Include="programQueue.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="abstractSyntaxTree.h" />
+    <ClInclude Include="charQueue.h" />
+    <ClInclude Include="parser.h" />
+    <ClInclude Include="programQueue.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lexer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ast.h" />
