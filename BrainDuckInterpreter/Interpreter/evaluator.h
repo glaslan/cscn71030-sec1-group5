@@ -1,5 +1,7 @@
 #pragma once
-#include"ast.h"
+
+#include"abstractSyntaxTree.h"
+#include "const.h"
 
 int Eval(PTREENODE tnode);
 

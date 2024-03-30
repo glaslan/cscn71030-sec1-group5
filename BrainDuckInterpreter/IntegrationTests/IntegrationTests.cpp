@@ -27,7 +27,7 @@ namespace IntegrationTests
 		TEST_METHOD(INT_PAR_01)
 		{
 
-			Assert::AreEqual();
+			//Assert::AreEqual();
 		}
 		TEST_METHOD(INT_PAR_02)
 		{

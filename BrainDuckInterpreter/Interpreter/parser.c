@@ -27,7 +27,7 @@ PTREENODE parseProgram(QNODE* qn) {
 	if (qn == NULL) {
 		errorNullTokenList();
 	}
-	PTREENODE root;
+	PTREENODE root = createTreeNode(qn->token);
 	int count = 0;
 	do {
 		switch (qn->token.t) {
