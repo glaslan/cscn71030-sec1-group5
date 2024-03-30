@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="charQueue.c" />
     <ClCompile Include="lexer.c" />
-    <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charQueue.h" />
