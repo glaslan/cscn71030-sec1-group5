@@ -10,7 +10,7 @@
 // 4. The function turns the token into a char and passes it to the ast
 // 5. The ast 
 
-bool parseArguments(char* argVal, int argNum) {
+char* parseArguments(char* argVal, int argNum) {
 	const int MAX_ARGUMENTS = 2;
 	const int MIN_ARGUMENTS = 1;
 	// Accept args and loop through them.
@@ -20,7 +20,7 @@ bool parseArguments(char* argVal, int argNum) {
 			errorTooManyArgs();
 
 	}
-	return true;
+	return argVal + 1;
 }
 
 PTREENODE parseProgram(QNODE* qn) {

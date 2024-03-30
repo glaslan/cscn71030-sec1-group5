@@ -24,7 +24,24 @@ namespace IntegrationTests
 	{
 	public:
 
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(INT_PAR_01)
+		{
+
+			Assert::AreEqual();
+		}
+		TEST_METHOD(INT_PAR_02)
+		{
+		}
+		TEST_METHOD(INT_PAR_03)
+		{
+		}
+		TEST_METHOD(INT_PAR_04)
+		{
+		}
+		TEST_METHOD(INT_PAR_05)
+		{
+		}
+		TEST_METHOD(INT_PAR_06)
 		{
 		}
 	};
@@ -33,7 +50,22 @@ namespace IntegrationTests
 	{
 	public:
 
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(INT_AST_01)
+		{
+		}
+		TEST_METHOD(INT_AST_02)
+		{
+		}
+		TEST_METHOD(INT_AST_03)
+		{
+		}
+		TEST_METHOD(INT_AST_04)
+		{
+		}
+		TEST_METHOD(INT_AST_05)
+		{
+		}
+		TEST_METHOD(INT_AST_06)
 		{
 		}
 	};

@@ -8,21 +8,20 @@ void initQueue() {
 	pHead = pTail = NULL;
 }
 
-QNODE createNode(TOKEN t) {
+QNODE* createNode(TOKEN t) {
 	QNODE* newNode = (QNODE*)malloc(sizeof(QNODE));
 	newNode->token = t;
 	newNode->next = NULL;
-	return *newNode;
+	return newNode;
 }
 
 // for adding nodes to the queue
-void enqueue(QNODE n) {
-	QNODE* new = (QNODE*)malloc(sizeof(QNODE));
+void enqueue(TOKEN t) {
+	QNODE* new = createNode(t);
 	if (new == NULL) {
 		printf("Error allocating node memory.\n");
 		exit(EXIT_FAILURE);
 	}
-	*new = n;
 	if (pHead == NULL) {
 		pHead = pTail = new;
 	}

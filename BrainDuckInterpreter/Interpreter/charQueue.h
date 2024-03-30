@@ -7,8 +7,8 @@ typedef struct qnode {
 } QNODE;
 
 void initQueue();
-QNODE createNode(TOKEN t);
-void enqueue(QNODE n);
+QNODE* createNode(TOKEN t);
+void enqueue(TOKEN);
 int isEmpty();
 QNODE dequeue();
 void printQueue();

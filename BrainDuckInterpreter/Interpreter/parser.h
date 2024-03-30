@@ -4,7 +4,7 @@
 #include "charQueue.h"
 
 
-bool parseArguments(char* argVal, int argNum);
+char* parseArguments(char* argVal, int argNum);
 PTREENODE parseProgram(QNODE*);
 
 void parseShiftRight(PTREENODE, QNODE*);
