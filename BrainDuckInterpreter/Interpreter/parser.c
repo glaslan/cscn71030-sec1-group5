@@ -1,5 +1,6 @@
 #include "parser.h"
-//#include "lexer.h"
+#include "../../../lexer.h"
+
 #include "abstractSyntaxTree.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -23,44 +24,130 @@ bool parseArguments(char* argVal, int argNum) {
 	return true;
 }
 
-PPROGRAMQUEUE parseProgram() {
-	
+PTREENODE parseProgram(QNODE* qn) {
+	if (qn == NULL) {
+		errorNullTokenList();
+	}
+	PTREENODE root;
+	int count = 0;
+	do {
+		switch (qn->token.t) {
+		case 0: 
+			parseShiftLeft(root, qn);
+			break;
+		case 1:
+			parseShiftRight(root, qn);
+			break;
+		case 2:
+			parseIncrement(root, qn);
+			break;
+		case 3:
+			parseDecrement(root, qn);
+			break;
+		case 4:
+			parseInput(root, qn);
+			break;
+		case 5:
+			parseOutput(root, qn);
+			break;
+		case 6:
+			parseJumpForward(root, qn);
+			break;
+		case 7:
+			parseJumpBack(root, qn);
+			break;
+		case 8:
+			parseDouble(root, qn);
+			break;
+		case 9:
+			parseHalve(root, qn);
+			break;
+		case 10:
+			parseRandom(root, qn);
+			break;
+		case 11:
+			// End token received
+			parseEnd(qn);
+			return root;
+		case 12:
+			errorInvalidToken(qn->token.i.data, count);
+		}
+		count++;
+	} while (qn->next != NULL);
+	errorNoEOFToken();
 }
 
-void parseShiftRight() {
+void parseShiftRight(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseShiftLeft() {
+void parseShiftLeft(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseIncrement() {
+void parseIncrement(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseDecrement() {
+void parseDecrement(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseOutput() {
+void parseOutput(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseInput() {
+void parseInput(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseJumpForward() {
+void parseJumpForward(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseJumpBack() {
+void parseJumpBack(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseDouble() {
+void parseDouble(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseHalve() {
+void parseHalve(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
-void parseRandom() {
-	
+void parseRandom(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL)
+		return;
+	tn = addNode(tn, qn->token);
 }
 
+void parseEnd(QNODE* qn) {
+	while (qn != NULL) {
+		dequeue();
+	}
+}
 
 // Error handling
 

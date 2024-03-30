@@ -133,6 +133,8 @@
     <ClCompile Include="programQueue.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\charQueue.h" />
+    <ClInclude Include="..\..\..\lexer.h" />
     <ClInclude Include="abstractSyntaxTree.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="programQueue.h" />
