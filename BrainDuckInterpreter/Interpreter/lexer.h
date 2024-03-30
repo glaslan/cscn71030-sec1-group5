@@ -1,5 +1,5 @@
 #pragma once
-// Destiny - Lexer pls
+// Destiny - Lexer 
 
 typedef struct item {
 	char data;
