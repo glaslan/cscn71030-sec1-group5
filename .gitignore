@@ -393,10 +393,3 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
-
-# JetBrains Rider
-*.sln.iml
-/BrainDuckInterpreter/queueTESTS/queueTESTS.vcxproj
-/BrainDuckInterpreter/queueTESTS/queueTESTS.vcxproj.filters
-/BrainDuckInterpreter/inputTESTS/inputTESTS.vcxproj
-/BrainDuckInterpreter/inputTESTS/inputTESTS.vcxproj.filters

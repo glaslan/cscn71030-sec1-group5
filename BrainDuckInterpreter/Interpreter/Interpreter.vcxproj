@@ -127,9 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="abstractSyntaxTree.c" />
     <ClCompile Include="charQueue.c" />
     <ClCompile Include="lexer.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="parser.c" />
+    <ClCompile Include="programQueue.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\charQueue.h" />
+    <ClInclude Include="..\..\..\lexer.h" />
+    <ClInclude Include="abstractSyntaxTree.h" />
+    <ClInclude Include="parser.h" />
+    <ClInclude Include="programQueue.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="charQueue.h" />
