@@ -24,6 +24,9 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+
+    <ClCompile Include="evaluator.c">
+
     <ClCompile Include="parser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,10 +34,17 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="programQueue.c">
+
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+
+    <ClInclude Include="const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="evaluator.h">
+
     <ClInclude Include="abstractSyntaxTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -50,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="lexer.h">
+
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
