@@ -44,7 +44,7 @@
     <ClInclude Include="programQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\charQueue.h">
+    <ClInclude Include="charQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "lexer.h"
 
 /** @struct TREENODE
  *  @brief Represents a node in the abstract syntax tree.
