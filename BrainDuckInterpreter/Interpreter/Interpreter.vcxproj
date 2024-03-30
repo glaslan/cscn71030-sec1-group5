@@ -136,13 +136,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\charQueue.h" />
-    <ClInclude Include="..\..\..\lexer.h" />
     <ClInclude Include="abstractSyntaxTree.h" />
     <ClInclude Include="parser.h" />
     <ClInclude Include="programQueue.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="charQueue.h" />
     <ClInclude Include="lexer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,7 +1,7 @@
 #pragma once
 #include <stdbool.h>
 #include "programQueue.h"
-#include "../../../charQueue.h"
+#include "charQueue.h"
 
 
 bool parseArguments(char* argVal, int argNum);

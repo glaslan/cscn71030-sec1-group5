@@ -44,17 +44,11 @@
     <ClInclude Include="programQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\lexer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\charQueue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="charQueue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
