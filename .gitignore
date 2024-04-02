@@ -393,3 +393,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/BrainDuckInterpreter/UnitTestParserAndAST/UnitTestParserAndAST.vcxproj
+/BrainDuckInterpreter/UnitTestParserAndAST/UnitTestParserAndAST.vcxproj.filters

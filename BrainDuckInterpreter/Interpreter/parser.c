@@ -76,70 +76,81 @@ PTREENODE parseProgram(QNODE* qn) {
 	errorNoEOFToken();
 }
 
-void parseShiftRight(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseShiftRight(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseShiftLeft(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseShiftLeft(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseIncrement(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseIncrement(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseDecrement(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseDecrement(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseOutput(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseOutput(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseInput(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseInput(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseJumpForward(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseJumpForward(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseJumpBack(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseJumpBack(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseDouble(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseDouble(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseHalve(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseHalve(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
-void parseRandom(PTREENODE tn, QNODE* qn) {
-	if (tn == NULL)
-		return;
+bool parseRandom(PTREENODE tn, QNODE* qn) {
+	if (tn == NULL || qn == NULL)
+		return false;
 	tn = addNode(tn, qn->token);
+	return true;
 }
 
 void parseEnd(QNODE* qn) {
