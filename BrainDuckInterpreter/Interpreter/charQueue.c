@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static QNODE *pHead, *pTail;
 
-void initQueue() {
-	pHead = pTail = NULL;
+void initQueue(CHARQUEUE cq) {
+	cq.head = NULL;
+	cq.tail = NULL;
 }
 
 QNODE* createNode(TOKEN t) {
@@ -16,43 +16,44 @@ QNODE* createNode(TOKEN t) {
 }
 
 // for adding nodes to the queue
-void enqueue(TOKEN t) {
-	QNODE* new = createNode(t);
+void enqueue(QNODE n, CHARQUEUE cq) {
+	QNODE* new = (QNODE*)malloc(sizeof(QNODE));
 	if (new == NULL) {
 		printf("Error allocating node memory.\n");
 		exit(EXIT_FAILURE);
 	}
-	if (pHead == NULL) {
-		pHead = pTail = new;
-	}
+	*new = n;
+	if (cq.head == NULL) {
+		cq.head = cq.tail = new;
+  }
 	else {
-		pTail->next = new;
-		pTail = new;
+		cq.tail->next = new;
+		cq.tail = new;
 	}
 }
 
-int isEmpty() {
-	return pHead == NULL;
+int isEmpty(CHARQUEUE cq) {
+	return cq.head == NULL;
 }
 
 // used for unit testing
-QNODE dequeue() {
-	if (isEmpty()) {
+QNODE dequeue(CHARQUEUE cq) {
+	if (isEmpty(cq)) {
 		printf("Queue is empty!\n");
 		exit(EXIT_FAILURE);
 	}
-	QNODE removed = *pHead;
-	QNODE* temp = pHead;
-	pHead = pHead->next;
+	QNODE removed = *cq.head;
+	QNODE* temp = cq.head;
+	cq.head = cq.head->next;
 	free(temp);
-	if (pHead == NULL) {
-		pTail = NULL;
+	if (cq.head == NULL) {
+		cq.tail = NULL;
 	}
 	return removed;
 }
 
-void printQueue() {
-	QNODE* current = pHead;
+void printQueue(CHARQUEUE cq) {
+	QNODE* current = cq.head;
 	printf("This is the queue: \n");
 	printf("-----------------------\n");
 
