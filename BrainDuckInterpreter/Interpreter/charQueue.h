@@ -6,11 +6,16 @@ typedef struct qnode {
 	struct qnode* next;
 } QNODE;
 
-void initQueue();
+typedef struct charQueue {
+	QNODE* head;
+	QNODE* tail
+}CHARQUEUE;
+
+void initQueue(CHARQUEUE cq);
 QNODE createNode(TOKEN t);
-void enqueue(QNODE n);
-int isEmpty();
-QNODE dequeue();
-void printQueue();
+void enqueue(QNODE n, CHARQUEUE cq);
+int isEmpty(CHARQUEUE cq);
+QNODE dequeue(CHARQUEUE cq);
+void printQueue(CHARQUEUE cq);
 
 
