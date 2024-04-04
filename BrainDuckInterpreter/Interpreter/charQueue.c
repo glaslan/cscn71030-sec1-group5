@@ -8,11 +8,11 @@ void initQueue(CHARQUEUE cq) {
 	cq.tail = NULL;
 }
 
-QNODE createNode(TOKEN t) {
+QNODE* createNode(TOKEN t) {
 	QNODE* newNode = (QNODE*)malloc(sizeof(QNODE));
 	newNode->token = t;
 	newNode->next = NULL;
-	return *newNode;
+	return newNode;
 }
 
 // for adding nodes to the queue
@@ -25,7 +25,7 @@ void enqueue(QNODE n, CHARQUEUE cq) {
 	*new = n;
 	if (cq.head == NULL) {
 		cq.head = cq.tail = new;
-	}
+  }
 	else {
 		cq.tail->next = new;
 		cq.tail = new;
