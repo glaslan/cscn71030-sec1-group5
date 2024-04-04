@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// test 
 static QNODE *pHead, *pTail;
 
 void initQueue() {
