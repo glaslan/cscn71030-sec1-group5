@@ -79,6 +79,18 @@ TOKENTYPE getType(ITEM i) {
 	case '\0':
 		t = END_TOKEN;
 		break;
+	case ' ':
+		break;
+	case '\n':
+		break;
+	case '\t':
+		break;
+	case '\v':
+		break;
+	case '\f':
+		break;
+	case '\r':
+		break;
 	default:
 		t = INVALID;
 		break;

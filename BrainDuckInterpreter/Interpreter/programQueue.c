@@ -28,7 +28,7 @@ bool enQueue(PPROGRAMQUEUE pq, PTREENODE tn) {
 }
 PTREENODE deQueue(PPROGRAMQUEUE pq) {
 	if (pq->head == NULL)
-		return;
+		return NULL;
 	PPROGRAMNODE temp = pq->head;
 	PTREENODE root = temp->root;
 	pq->head = pq->head->next;
