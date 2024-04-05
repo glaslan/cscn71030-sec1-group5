@@ -48,7 +48,7 @@ bool printAST(PTREENODE n) {
 	if (n == NULL)
 		return false;
 	printAST(n->left);
-	printf("Current token is: %d\n", n->token);
+	printf("Current token is: %d\n", n->token.t);
 	printAST(n->right);
 	return true;
 }

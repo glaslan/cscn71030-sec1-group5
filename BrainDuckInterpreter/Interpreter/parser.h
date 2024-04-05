@@ -20,7 +20,7 @@ bool parseHalve(PTREENODE, QNODE*);
 bool parseRandom(PTREENODE, QNODE*);
 void parseEnd(CHARQUEUE*);
 
-void errorTooManyArgs();
-void errorInvalidToken(char, int);
-void errorNullTokenList();
-void errorNoEOFToken();
+int errorTooManyArgs();
+int errorInvalidToken(char, int);
+int errorNullTokenList();
+int errorNoEOFToken();
