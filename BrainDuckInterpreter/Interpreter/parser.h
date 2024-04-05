@@ -5,7 +5,7 @@
 
 
 char* parseArguments(char* argVal, int argNum);
-PTREENODE parseProgram(QNODE*);
+PTREENODE parseProgram(CHARQUEUE*);
 
 bool parseShiftRight(PTREENODE, QNODE*);
 bool parseShiftLeft(PTREENODE, QNODE*);
@@ -18,7 +18,7 @@ bool parseJumpBack(PTREENODE, QNODE*);
 bool parseDouble(PTREENODE, QNODE*);
 bool parseHalve(PTREENODE, QNODE*);
 bool parseRandom(PTREENODE, QNODE*);
-void parseEnd(QNODE*);
+void parseEnd(CHARQUEUE*);
 
 void errorTooManyArgs();
 void errorInvalidToken(char, int);

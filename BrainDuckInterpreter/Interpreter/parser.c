@@ -23,13 +23,14 @@ char* parseArguments(char* argVal, int argNum) {
 	return argVal + 1;
 }
 
-PTREENODE parseProgram(QNODE* qn) {
-	if (qn == NULL) {
+PTREENODE parseProgram(CHARQUEUE* cq) {
+	if (cq == NULL) {
 		errorNullTokenList();
 	}
-	PTREENODE root = createTreeNode(qn->token);
+	PTREENODE root = createTreeNode(cq->head->token);
 	int count = 0;
 	do {
+		QNODE* qn = cq->head;
 		switch (qn->token.t) {
 		case 0: 
 			parseShiftLeft(root, qn);
@@ -66,13 +67,14 @@ PTREENODE parseProgram(QNODE* qn) {
 			break;
 		case 11:
 			// End token received
-			parseEnd(qn);
+			parseEnd(cq);
 			return root;
 		case 12:
-			errorInvalidToken(qn->token.i.data, count);
+			errorInvalidToken(cq->head->token.i.data, count);
 		}
 		count++;
-	} while (qn->next != NULL);
+		cq->head = cq->head->next;
+	} while (cq->head != NULL);
 	errorNoEOFToken();
 }
 
@@ -153,9 +155,9 @@ bool parseRandom(PTREENODE tn, QNODE* qn) {
 	return true;
 }
 
-void parseEnd(QNODE* qn) {
+void parseEnd(CHARQUEUE* qn) {
 	while (qn != NULL) {
-		dequeue();
+		dequeue(qn);
 	}
 }
 

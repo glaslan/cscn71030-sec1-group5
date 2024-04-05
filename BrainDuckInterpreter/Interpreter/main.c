@@ -28,14 +28,15 @@ int main(int argc, char* argv[]) {
 		fprintf(stderr, "Provide a valid file path\n");
 		exit(EXIT_FAILURE);
 	}
-	initQueue();
+	CHARQUEUE* cq = initQueue();
 	int i = 0;
 	while ((i = fgetc(fp)) != EOF) {
 		ITEM item = createItem(i);
-		enqueue(createToken(item, getType(item)));
+		TOKEN token = createToken(item, getType(item));
+		enqueue(cq, createNode(token));
 	}
 	fclose(fp);
-	PTREENODE astRoot = parseProgram(*pHead);
+	PTREENODE astRoot = parseProgram(&cq);
 	ini();
 	Eval(astRoot);
 	return 0;

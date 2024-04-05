@@ -1,4 +1,5 @@
 #pragma once
+#include <stdbool.h>
 #include "lexer.h"
 
 typedef struct qnode {
@@ -11,11 +12,11 @@ typedef struct charQueue {
 	QNODE* tail;
 }CHARQUEUE;
 
-void initQueue(CHARQUEUE cq);
-QNODE createNode(TOKEN t);
-void enqueue(QNODE n, CHARQUEUE cq);
-int isEmpty(CHARQUEUE cq);
-QNODE dequeue(CHARQUEUE cq);
+CHARQUEUE* initQueue();
+QNODE* createNode(TOKEN t);
+void enqueue(CHARQUEUE*, QNODE* n);
+bool isEmpty(CHARQUEUE cq);
+QNODE dequeue(CHARQUEUE* cq);
 void printQueue(CHARQUEUE cq);
 
 

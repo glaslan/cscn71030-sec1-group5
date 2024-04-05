@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "evaluator.h"
 int idx = 0;
 PTREENODE jumpStart = NULL;

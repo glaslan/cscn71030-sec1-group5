@@ -50,6 +50,7 @@ bool printAST(PTREENODE n) {
 	printAST(n->left);
 	printf("Current token is: %d\n", n->token);
 	printAST(n->right);
+	return true;
 }
 
 PTREENODE removeNode(PTREENODE tn) {
