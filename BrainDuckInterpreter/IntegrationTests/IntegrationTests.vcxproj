@@ -89,7 +89,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -157,6 +157,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Interpreter\abstractSyntaxTree.c" />
+    <ClCompile Include="..\Interpreter\charQueue.c" />
+    <ClCompile Include="..\Interpreter\evaluator.c" />
+    <ClCompile Include="..\Interpreter\lexer.c" />
+    <ClCompile Include="..\Interpreter\parser.c" />
+    <ClCompile Include="..\Interpreter\programQueue.c" />
     <ClCompile Include="IntegrationTests.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -166,12 +172,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Interpreter\abstractSyntaxTree.h" />
+    <ClInclude Include="..\Interpreter\charQueue.h" />
+    <ClInclude Include="..\Interpreter\const.h" />
+    <ClInclude Include="..\Interpreter\evaluator.h" />
+    <ClInclude Include="..\Interpreter\lexer.h" />
+    <ClInclude Include="..\Interpreter\parser.h" />
+    <ClInclude Include="..\Interpreter\programQueue.h" />
     <ClInclude Include="pch.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Interpreter\Interpreter.vcxproj">
-      <Project>{35ee295e-2310-4c53-a6c3-e73e1b9f12f1}</Project>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

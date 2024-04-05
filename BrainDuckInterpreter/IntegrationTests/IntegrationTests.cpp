@@ -1,10 +1,15 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+
+extern "C" {
 #include "../Interpreter/lexer.h"
 #include "../Interpreter/charQueue.h"
 #include "../Interpreter/parser.h"
 #include "../Interpreter/abstractSyntaxTree.h"
 #include "../Interpreter/programQueue.h"
+#include "../Interpreter/evaluator.h"
+#include "../Interpreter/const.h"
+}
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -26,8 +31,12 @@ namespace IntegrationTests
 
 		TEST_METHOD(INT_PAR_01)
 		{
-
-			//Assert::AreEqual();
+			ITEM i = createItem('a');
+			TOKEN t = createToken(i, INCREMENT);
+			QNODE q = createNode(t);
+			QNODE* qPtr = &q;
+			PTREENODE p = parseProgram(qPtr);
+			Assert::IsNotNull(p);
 		}
 		TEST_METHOD(INT_PAR_02)
 		{
