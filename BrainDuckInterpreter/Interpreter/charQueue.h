@@ -8,7 +8,7 @@ typedef struct qnode {
 
 typedef struct charQueue {
 	QNODE* head;
-	QNODE* tail
+	QNODE* tail;
 }CHARQUEUE;
 
 void initQueue(CHARQUEUE cq);
