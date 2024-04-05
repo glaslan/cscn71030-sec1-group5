@@ -163,19 +163,19 @@ void parseEnd(CHARQUEUE* qn) {
 
 // Error handling
 
-void errorTooManyArgs() {
+int errorTooManyArgs() {
 	fprintf(stderr, "Too many arguments.\n");
-	exit(EXIT_FAILURE);
+	return 1;
 }
-void errorInvalidToken(char symbol, int num) {
+int errorInvalidToken(char symbol, int num) {
 	fprintf(stderr, "Invalid token \'%c\' at position %d\n", symbol, num);
-	exit(EXIT_FAILURE);
+	return 1;
 }
-void errorNullTokenList() {
+int errorNullTokenList() {
 	fprintf(stderr, "Token list is NULL\n");
-	exit(EXIT_FAILURE);
+	return 1;
 }
-void errorNoEOFToken() {
+int errorNoEOFToken() {
 	fprintf(stderr, "No EOF token found\n");
-	exit(EXIT_FAILURE);
+	return 1;
 }
