@@ -1,20 +1,28 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "evaluator.h"
-int idx = 0;
 PTREENODE jumpStart = NULL;
+
+char tape[MAX_TAPE];
+int idx = 0;
+
+void ini()
+{
+	for (int i = 0; i < MAX_TAPE; i++)
+		tape[i] = 0;
+}
 
 int Eval(PTREENODE tnode)
 {
-	if (tnode == NULL || tnode->token==END_TOKEN)
+	if (tnode == NULL || tnode->token.t==END_TOKEN)
 		return;
 	Eval(tnode->left);
-	if (tnode->token == JUMP_BACK)
+	if (tnode->token.t == JUMP_BACK)
 	{
 		jumpStart = tnode;
 		if (tape[idx] == 0)Eval(tnode->right);
 	}
 
-	if (tnode->token == JUMP_PAST)
+	if (tnode->token.t == JUMP_PAST)
 	{
 		if (tape[idx] == 0)
 			Eval(tnode->right);
@@ -24,24 +32,24 @@ int Eval(PTREENODE tnode)
 	else
 	{
 		//statements
-		if (tnode->token == MOVE_RIGHT)
+		if (tnode->token.t == MOVE_RIGHT)
 			incdex(&idx);
-		if (tnode->token == MOVE_LEFT)
+		if (tnode->token.t == MOVE_LEFT)
 			decdex(&idx);
 		//expression
-		if (tnode->token == INCREMENT)
+		if (tnode->token.t == INCREMENT)
 			inc(tape, &idx, tnode->value);
-		if (tnode->token == DECREMENT)
+		if (tnode->token.t == DECREMENT)
 			inc(tape, &idx, tnode->value);
-		if (tnode->token == DOUBLE)
+		if (tnode->token.t == DOUBLE)
 			x2(tape, &idx);
-		if (tnode->token == HALF)
+		if (tnode->token.t == HALF)
 			div2(tape, &idx);
-		if (tnode->token == INPUT)
+		if (tnode->token.t == INPUT)
 			in(tape, &idx);
-		if (tnode->token == OUTPUT)
+		if (tnode->token.t == OUTPUT)
 			out(tape, &idx);
-		if (tnode->token == RANDOM)
+		if (tnode->token.t == RANDOM)
 			randNum(tape, &idx);
 		Eval(tnode->right);
 	}
@@ -53,12 +61,12 @@ int Eval(PTREENODE tnode)
 //expressions
 void inc(char tape[],int* idx,int value)
 {
-	tape[*idx] += value;
+	tape[*idx]++;
 }
 
 void dec(char tape[], int* idx, int value)
 {
-	tape[*idx] -= value;
+	tape[*idx]--;
 }
 
 void x2(char tape[], int* idx)
@@ -75,7 +83,7 @@ int bound(char up, char low)
 {
 	return rand() % (up - low + 1) + low;
 }
-void randNum(unsigned char tape[], int* idx)
+void randNum(char tape[], int* idx)
 {
 	//srand(time(NULL));
 	tape[*idx] = bound(255,0);
@@ -84,33 +92,27 @@ void randNum(unsigned char tape[], int* idx)
 //statement
 void incdex(int* idx)
 {
-	*idx++;
+	*idx=*idx+1;
 	if (*idx == MAX_TAPE)
 		*idx = 0;
 }
 
 void decdex(int* idx)
 {
-	*idx--;
+	*idx=*idx-1;
 	if (*idx <0)
 		*idx = MAX_TAPE-1;
 }
 
-void jump1(int* idx)
-{}
-
-void jump2(int* idx)
-{}
-
-void out(unsigned char tape[], int* idx)
+void out(char tape[], int* idx)
 {
 	printf("%d", tape[*idx]);
 }
 
-void in(unsigned char tape[], int* idx)
+void in(char tape[], int* idx)
 {
-	int inp;
+	char inp;
 	printf("\nPlease enter a character: ");
-	fscanf("%d", &inp);
+	scanf("%c", &inp);
 	tape[*idx] = inp;
 }
