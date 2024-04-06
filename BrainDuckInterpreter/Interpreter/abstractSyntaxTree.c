@@ -13,19 +13,22 @@ PTREENODE createTreeNode(TOKEN t) {
 	return newNode;
 }
 
-PTREENODE addNode(PTREENODE n, TOKEN t) {
-	if (n == NULL) {
-		return createNode(t);
+PTREENODE addNode(PTREENODE p, TOKEN t) {
+	if (p == NULL) {
+		return createTreeNode(t);
 	}
-	if (getType(t.i) == JUMP_BACK) {
-		n->left = addNode(n->left, t);
+	// Traverse right
+	// if the last node is a [ and the adding node is a ] then add it to the right. If it's anything else then traverse left then right and add the node
+
+
+	if (getType(p->token.i) == JUMP_BACK && p->right == NULL && getType(t.i) != JUMP_PAST) {
+		p->left = addNode(p->left, t);
+		p->right = addNode(p->right, t);
 	}
-	else {// if t is an item that goes on the right
-		n->right = addNode(n->right, t);
+	else {
+		p->right = addNode(p->right, t);
 	}
-	if (n->left == NULL && n->right == NULL && n->token.t == t.t)
-		++(n->value); // if t is the same as the final item add one to the final node's value
-	return n;
+	return p;
 }
 
 PTREENODE getLeftTreeNodePtr(PTREENODE pt) {
@@ -71,10 +74,11 @@ int getTreeSize(PTREENODE tn) {
 	return count + 1;
 }
 
-void destroyAST(PTREENODE n) {
+bool destroyAST(PTREENODE n) {
 	if (n == NULL)
-		return;
+		return false;
 	destroyAST(n->left);
 	destroyAST(n->right);
 	free(n);
+	return true;
 }
