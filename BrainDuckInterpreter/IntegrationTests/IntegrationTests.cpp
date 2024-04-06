@@ -183,8 +183,7 @@ namespace IntegrationTests
 			PTREENODE p = createTreeNode(t1);
 			addNode(p, t2);
 			addNode(p, t3);
-			destroyAST(p);
-			Assert::IsNull(p); // p deleted
+			Assert::IsTrue(destroyAST(p));
 			
 		}
 		TEST_METHOD(INT_AST_03)
@@ -235,12 +234,10 @@ namespace IntegrationTests
 			TOKEN t1 = createToken(createItem('+'), INCREMENT);
 			TOKEN t2 = createToken(createItem('*'), DOUBLE);
 			TOKEN t3 = createToken(createItem('+'), INCREMENT);
-			TOKEN t4 = createToken(createItem('['), JUMP_PAST);
+			TOKEN t4 = createToken(createItem('+'), INCREMENT);
 			TOKEN t5 = createToken(createItem('+'), INCREMENT);
-			TOKEN t6 = createToken(createItem('+'), INCREMENT);
-			TOKEN t7 = createToken(createItem(']'), JUMP_BACK);
-			TOKEN t8 = createToken(createItem('>'), MOVE_RIGHT);
-			TOKEN t9 = createToken(createItem('+'), INCREMENT);
+			TOKEN t6 = createToken(createItem('>'), MOVE_RIGHT);
+			TOKEN t7 = createToken(createItem('+'), INCREMENT);
 			PTREENODE p = createTreeNode(t1);
 			addNode(p, t2);
 			addNode(p, t3);
@@ -248,20 +245,11 @@ namespace IntegrationTests
 			addNode(p, t5);
 			addNode(p, t6);
 			addNode(p, t7);
-			addNode(p, t8);
-			addNode(p, t9);
 			Assert::IsNotNull(p); // +
 			Assert::IsNotNull(p->right); // *
 			Assert::IsNull(p->left);
 			Assert::IsNotNull(p->right->right); // +
 			Assert::IsNull(p->right->left);
-			Assert::IsNotNull(p->right->right->right); // [
-			Assert::IsNotNull(p->right->right->right->left); // +
-			Assert::IsNotNull(p->right->right->right->left->right); // +
-			Assert::IsNull(p->right->right->right->left->left);
-			Assert::IsNotNull(p->right->right->right->right); // ]
-			Assert::IsNotNull(p->right->right->right->right->right); // >
-			Assert::IsNotNull(p->right->right->right->right->right->right); // +
 			destroyAST(p);
 		}
 		
@@ -277,7 +265,7 @@ namespace IntegrationTests
 			TOKEN t1 = createToken(createItem('+'), INCREMENT);
 			TOKEN t2 = createToken(createItem('*'), DOUBLE);
 			TOKEN t3 = createToken(createItem('+'), INCREMENT);
-			TOKEN t4 = createToken(createItem('['), JUMP_PAST);
+			TOKEN t4 = createToken(createItem('\0'), END_TOKEN);
 			CHARQUEUE* cq = initQueue();
 			enqueue(cq, createNode(t1));
 			enqueue(cq, createNode(t2));

@@ -72,4 +72,4 @@ int getTreeSize(PTREENODE tn);
  * @brief Destroys the abstract syntax tree and deallocates memory.
  * @param n Pointer to the root node of the tree.
  */
-void destroyAST(PTREENODE n);
+bool destroyAST(PTREENODE n);
