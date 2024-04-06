@@ -156,7 +156,7 @@ bool parseRandom(PTREENODE tn, QNODE* qn) {
 }
 
 void parseEnd(CHARQUEUE* qn) {
-	while (qn != NULL) {
+	while (qn->head != NULL) {
 		dequeue(qn);
 	}
 }

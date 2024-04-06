@@ -3,9 +3,6 @@
 #include "lexer.h"
 #include "parser.h"
 #include "abstractSyntaxTree.h"
-#include "programQueue.h"
-#include<stdlib.h>
-#include<stdio.h>
 #include "charQueue.h"
 
 
@@ -23,7 +20,7 @@ int main(int argc, char* argv[]) {
 		fprintf(stderr, "Provide a path to the file\n");
 		exit(EXIT_FAILURE);
 	}
-	FILE* fp = fopen(parseArguments(argv, 1), 'r');
+	FILE* fp = fopen(parseArguments(argv, 2), "r");
 	if (fp == NULL) {
 		fprintf(stderr, "Provide a valid file path\n");
 		exit(EXIT_FAILURE);
@@ -37,7 +34,7 @@ int main(int argc, char* argv[]) {
 	}
 	fclose(fp);
 	PTREENODE astRoot = parseProgram(&cq);
-	ini();
-	Eval(astRoot);
+	//ini();
+	//Eval(astRoot);
 	return 0;
 }

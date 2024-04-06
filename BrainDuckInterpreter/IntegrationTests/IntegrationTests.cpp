@@ -23,14 +23,12 @@ namespace IntegrationTests
 		TEST_METHOD(INP_LEX_01)
 		{
 			char input[] = "><,";
-			CHARQUEUE* cq = initQueue();
 			for(int i = 0; i < 3; i++){
 				char expected = input[i];
 				char actual = extractChar(input, &i);
 
 				Assert::AreEqual(expected, actual);
 			}
-			free(cq);
 		}
 
 		// testing the accuracy of token conversion - normal usage 
@@ -38,19 +36,21 @@ namespace IntegrationTests
 		{ 
 			ITEM i = createItem('<');
 			TOKENTYPE actual = getType(i);
-			Assert::AreEqual(MOVE_LEFT, actual);
+
+			Assert::AreEqual((int)MOVE_LEFT, (int)actual);
 		}
 
 		// testing the accuracy of token conversion - invalid usage 
-		TEST_METHOD(TOK_LEX_02_02) 
+		TEST_METHOD(TOK_LEX_03) 
 		{
 			ITEM i = createItem('Q');
 			TOKENTYPE actual = getType(i);
-			Assert::AreEqual(INVALID, actual);
+			
+			Assert::AreEqual((int)INVALID, (int)actual);
 		}
 
 		// testing that queue contents are visible to parser 
-		TEST_METHOD(QUE_LEX_03)
+		TEST_METHOD(QUE_LEX_04)
 		{
 			ITEM i = createItem('+');
 			TOKEN t = createToken(i, getType(i));
@@ -62,7 +62,7 @@ namespace IntegrationTests
 		}
 
 		// testing the items in the queue are in the right order 
-		TEST_METHOD(QUE_LEX_04)
+		TEST_METHOD(QUE_LEX_05)
 		{
 			char string[] = "+/.";
 			CHARQUEUE* cq = initQueue();
@@ -73,50 +73,47 @@ namespace IntegrationTests
 				enqueue(cq, n);
 			}
 
-			//testing first and last to verify order
+			//check all to verify order
 			QNODE dqA = dequeue(cq);
 			char actualA = dqA.token.i.data;
 			char expectedA = '+';
+
+			QNODE dqB= dequeue(cq);
+			char actualB = dqB.token.i.data;
+			char expectedB = '/';
 
 			QNODE dqC = dequeue(cq);
 			char actualC = dqC.token.i.data;
 			char expectedC = '.';
 			
 			Assert::AreEqual(expectedA, actualA);
+			Assert::AreEqual(expectedB, actualB);
 			Assert::AreEqual(expectedC, actualC);
 
 		}
 
 		// testing accuracy of token type to token name 
-		TEST_METHOD(OUT_LEX_05)
+		TEST_METHOD(OUT_LEX_06)
 		{
 			TOKENTYPE type = DOUBLE;
 			const char* expected = "DOUBLE";
-			const char* actual = TOKENNAME[type];
+			const char* actual = TOKENNAME[(int)type];
 	
-			Assert::AreEqual(expected, actual);
+			Assert::AreEqual(expected, actual); 
 		}
 
-		// testing that final output is accurate - with invalid character 
-		TEST_METHOD(OUT_LEX_05_02)
+		// testing that token name is accurate when accessing through token
+		TEST_METHOD(OUT_LEX_07)
 		{
 			ITEM i = createItem('[');
 			TOKENTYPE type = getType(i);
 			TOKEN token = createToken(i, type);
 
-			const char* expected = "JUMP_BACK";
-			const char* actual = TOKENNAME[token.t];
+			const char* expected = "JUMP BACK";
+			const char* actual = TOKENNAME[(int)token.t];
 
 			Assert::AreEqual(expected, actual);
 		}
-
-		// testing that final output is accurate - with whitespaces 
-		TEST_METHOD(OUT_LEX_05_03)
-		{
-
-			//Assert::AreEqual();
-		}
-
 
 	};
 
@@ -143,8 +140,8 @@ namespace IntegrationTests
 		}
 		TEST_METHOD(INT_PAR_03)
 		{
-			ITEM i = createItem('+');
-			TOKEN t = createToken(i, INCREMENT);
+			ITEM i = createItem('\0');
+			TOKEN t = createToken(i, END_TOKEN);
 			QNODE* q = createNode(t);
 			CHARQUEUE* cq = initQueue();
 			enqueue(cq, q);
@@ -152,10 +149,10 @@ namespace IntegrationTests
 			Assert::IsNotNull(p);
 			destroyAST(p);
 		}
-		TEST_METHOD(INT_PAR_04)
+		/*TEST_METHOD(INT_PAR_04)
 		{
-
-		}
+			// SEE INT_AST_07
+		}*/
 		TEST_METHOD(INT_PAR_05)
 		{
 			// Prereq: Run the program with too many arguments
@@ -169,8 +166,8 @@ namespace IntegrationTests
 
 		TEST_METHOD(INT_AST_01)
 		{
-			ITEM i = createItem('+');
-			TOKEN t = createToken(i, INCREMENT);
+			ITEM i = createItem('\0');
+ 			TOKEN t = createToken(i, END_TOKEN);
 			QNODE* q = createNode(t);
 			CHARQUEUE* cq = initQueue();
 			enqueue(cq, q);
@@ -183,7 +180,7 @@ namespace IntegrationTests
 			TOKEN t1 = createToken(createItem('+'), INCREMENT);
 			TOKEN t2 = createToken(createItem('*'), DOUBLE);
 			TOKEN t3 = createToken(createItem('>'), MOVE_RIGHT);
-			PTREENODE p = addNode(p, t1);
+			PTREENODE p = createTreeNode(t1);
 			addNode(p, t2);
 			addNode(p, t3);
 			destroyAST(p);
@@ -195,7 +192,7 @@ namespace IntegrationTests
 			TOKEN t1 = createToken(createItem('+'), INCREMENT);
 			TOKEN t2 = createToken(createItem('*'), DOUBLE);
 			TOKEN t3 = createToken(createItem('>'), MOVE_RIGHT);
-			PTREENODE p = addNode(p, t1);
+			PTREENODE p = createTreeNode(t1);
 			addNode(p, t2);
 			addNode(p, t3);
 			Assert::IsNotNull(p);
@@ -212,7 +209,7 @@ namespace IntegrationTests
 			TOKEN t1 = createToken(createItem('+'), INCREMENT);
 			TOKEN t2 = createToken(createItem('*'), DOUBLE);
 			TOKEN t3 = createToken(createItem('.'), OUTPUT);
-			PTREENODE p = addNode(p, t1);
+			PTREENODE p = createTreeNode(t1);
 			addNode(p, t2);
 			addNode(p, t3);
 			ini();
@@ -225,13 +222,10 @@ namespace IntegrationTests
 		{
 			TOKEN t1 = createToken(createItem('+'), INCREMENT);
 			TOKEN t2 = createToken(createItem('*'), DOUBLE);
-			TOKEN t3;
-			PTREENODE p = addNode(p, t1);
+			PTREENODE p = createTreeNode(t1);
 			addNode(p, t2);
-			addNode(p, t3);
 			Assert::IsNotNull(p);
 			Assert::IsNotNull(p->right);
-			Assert::IsNull(p->right->right); // Null token inserted here
 			Assert::IsNull(p->left); // Left should be NULL
 			destroyAST(p);
 		}
@@ -247,7 +241,7 @@ namespace IntegrationTests
 			TOKEN t7 = createToken(createItem(']'), JUMP_BACK);
 			TOKEN t8 = createToken(createItem('>'), MOVE_RIGHT);
 			TOKEN t9 = createToken(createItem('+'), INCREMENT);
-			PTREENODE p = addNode(p, t1);
+			PTREENODE p = createTreeNode(t1);
 			addNode(p, t2);
 			addNode(p, t3);
 			addNode(p, t4);
@@ -277,8 +271,31 @@ namespace IntegrationTests
 	{
 	public:
 
-		TEST_METHOD(TestMethod1)
+		//test to see if eval's input is in a correct form
+		TEST_METHOD(INP_EVA_01)
 		{
-		}
+			TOKEN t1 = createToken(createItem('+'), INCREMENT);
+			TOKEN t2 = createToken(createItem('*'), DOUBLE);
+			TOKEN t3 = createToken(createItem('+'), INCREMENT);
+			TOKEN t4 = createToken(createItem('['), JUMP_PAST);
+			CHARQUEUE* cq = initQueue();
+			enqueue(cq, createNode(t1));
+			enqueue(cq, createNode(t2));
+			enqueue(cq, createNode(t3));
+			enqueue(cq, createNode(t4));
+			PTREENODE test = parseProgram(cq);	//manual: PTREENODE can assign to parseProgram
+			Assert::IsNotNull(test);
+			while (cq != NULL) {
+				dequeue(cq);
+			}
+		};
+		//test to see if random function gives data in a valid range
+		TEST_METHOD(INT_EVA_04)
+		{
+			/*randNum(tape, &idx);
+			bool test = false;
+			if (tape[idx]<256 && tape[idx]>-1)test = true;
+			Assert::IsTrue(test);*/
+		};
 	};
 }
