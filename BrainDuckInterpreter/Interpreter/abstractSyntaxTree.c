@@ -17,34 +17,9 @@ PTREENODE addNode(PTREENODE p, TOKEN t) {
 	if (p == NULL) {
 		return createTreeNode(t);
 	}
-	// Traverse right
-	// if the last node is a [ and the adding node is a ] then add it to the right. If it's anything else then traverse left then right and add the node
 
-
-	if (getType(p->token.i) == JUMP_BACK && p->right == NULL && getType(t.i) != JUMP_PAST) {
-		p->left = addNode(p->left, t);
-		p->right = addNode(p->right, t);
-	}
-	else {
-		p->right = addNode(p->right, t);
-	}
+	p->right = addNode(p->right, t);
 	return p;
-}
-
-PTREENODE getLeftTreeNodePtr(PTREENODE pt) {
-	if (pt == NULL) {
-		fprintf(stderr, "PTREENODE was NULL in getLeftTreeNodePtr(PTREENODE pt)");
-		return NULL;
-	}
-	return pt->left;
-}
-
-PTREENODE getRightTreeNodePtr(PTREENODE pt) {
-	if (pt == NULL) {
-		fprintf(stderr, "PTREENODE was NULL in getRightTreeNodePtr(PTREENODE pt)");
-		return NULL;
-	}
-	return pt->right;
 }
 
 bool printAST(PTREENODE n) {

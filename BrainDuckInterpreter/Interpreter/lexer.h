@@ -40,7 +40,7 @@ char extractChar(char input[], int* index);
 ITEM createItem(char a);
 
 // get the token type 
-TOKENTYPE getType(ITEM i);
+TOKENTYPE getType(char);
 
 // create a token 
 TOKEN createToken(ITEM i, TOKENTYPE t);

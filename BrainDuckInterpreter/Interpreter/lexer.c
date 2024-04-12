@@ -38,10 +38,9 @@ ITEM createItem(char a) {
 }
 
 // get the token type 
-TOKENTYPE getType(ITEM i) {
-	char input = i.data;
-	TOKENTYPE t;
-	switch (input)
+TOKENTYPE getType(char c) {
+	TOKENTYPE t = INVALID;
+	switch (c)
 	{
 	case '<':
 		t = MOVE_LEFT;
@@ -76,7 +75,7 @@ TOKENTYPE getType(ITEM i) {
 	case '?':
 		t = RANDOM;
 		break;
-	case '\0':
+	case EOF:
 		t = END_TOKEN;
 		break;
 	case ' ':

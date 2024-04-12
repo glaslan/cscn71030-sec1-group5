@@ -1,7 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "evaluator.h"
-PTREENODE jumpStart = NULL;
+#define PROGRAM_LENGTH 5000
 
+PTREENODE jumpStart = NULL;
+TOKENTYPE program[PROGRAM_LENGTH];
+int programPtr = 0;
 char tape[MAX_TAPE];
 int idx = 0;
 
@@ -11,51 +14,78 @@ void ini()
 		tape[i] = 0;
 }
 
-int Eval(PTREENODE tnode)
+bool rakeTree(PTREENODE p)
 {
-	if (tnode == NULL || tnode->token.t==END_TOKEN)
-		return;
-	Eval(tnode->left);
-	if (tnode->token.t == JUMP_BACK)
-	{
-		jumpStart = tnode;
-		if (tape[idx] == 0)Eval(tnode->right);
-	}
+	if (p == NULL) {
+		return false;
 
-	if (tnode->token.t == JUMP_PAST)
-	{
-		if (tape[idx] == 0)
-			Eval(tnode->right);
-		else
-			Eval(jumpStart);
 	}
-	else
-	{
-		//statements
-		if (tnode->token.t == MOVE_RIGHT)
-			incdex(&idx);
-		if (tnode->token.t == MOVE_LEFT)
-			decdex(&idx);
-		//expression
-		if (tnode->token.t == INCREMENT)
-			inc(tape, &idx, tnode->value);
-		if (tnode->token.t == DECREMENT)
-			inc(tape, &idx, tnode->value);
-		if (tnode->token.t == DOUBLE)
-			x2(tape, &idx);
-		if (tnode->token.t == HALF)
-			div2(tape, &idx);
-		if (tnode->token.t == INPUT)
-			in(tape, &idx);
-		if (tnode->token.t == OUTPUT)
-			out(tape, &idx);
-		if (tnode->token.t == RANDOM)
-			randNum(tape, &idx);
-		Eval(tnode->right);
-	}
+	TREENODE t;
+	// in order traversal
+	rakeTree(p->left);
+	t = *p;
+	program[programPtr] = t.token.t;
+	programPtr++;
+	rakeTree(p->right);
+}
 
-	
-    //return;
+int Eval(PTREENODE p, FILE* out)
+{
+    //traverseTree(p);
+    rakeTree(p);
+    program[programPtr] = END_TOKEN;
+    /*for (int k = 0; k < programPtr; k++) {
+        printf("%d", program[k]);
+    }*/
+    programPtr = 0;
+
+    bool getOut = false;
+    while (!getOut)
+    {
+        switch (program[programPtr])
+        {
+        case 0:
+            decdex(&idx);
+            break;
+        case 1:
+            incdex(&idx);
+            break;
+        case 2:
+            inc(tape, idx, p->value);
+            break;
+        case 3:
+            dec(tape, idx, p->value);
+            break;
+        case 4:
+            in(tape, &idx);
+            break;
+        case 5:
+            sendOut(tape, &idx, out);
+            break;
+        case 6:
+            jumpPast(tape, idx);
+            break;
+        case 7:
+            jumpBack(tape, idx);
+            break;
+        case 8:
+            x2(tape, &idx);
+            break;
+        case 9:
+            div2(tape, &idx);
+            break;
+        case 10:
+            randNum(tape, &idx);
+            break;
+        case 11:
+            getOut = true;
+            break;
+        default:
+            break;
+        }
+        if (programPtr < PROGRAM_LENGTH)
+            programPtr++;
+    }
 }
 
 //expressions
@@ -79,14 +109,14 @@ void div2(char tape[], int* idx)
 	tape[*idx] /= 2;
 }
 
-int bound(char up, char low)
+int bound(int up, int low)
 {
 	return rand() % (up - low + 1) + low;
 }
 void randNum(char tape[], int* idx)
 {
-	//srand(time(NULL));
-	tape[*idx] = bound(255,0);
+	srand(time(0));
+	tape[*idx] = bound(126,33);
 }
 
 //statement
@@ -104,9 +134,36 @@ void decdex(int* idx)
 		*idx = MAX_TAPE-1;
 }
 
-void out(char tape[], int* idx)
+
+void jumpPast(char tape[], int i)
 {
-	printf("%d", tape[*idx]);
+    //printf("Jump End\n");
+    if (tape[i] != 0)
+    {
+        while (program[programPtr] != JUMP_BACK)
+        {
+            programPtr--;
+        }
+    }
+}
+
+void jumpBack(char tape[], int i)
+{
+    //printf("Jump back\n");
+    if (tape[i] == 0)
+    {
+        while (program[programPtr] != JUMP_PAST)
+        {
+            programPtr++;
+        }
+        //printf("Jumped\n");
+    }
+}
+
+void sendOut(char tape[], int* idx, FILE* out)
+{
+	fputc(tape[*idx], stdout);
+    fputc(tape[*idx], out);
 }
 
 void in(char tape[], int* idx)

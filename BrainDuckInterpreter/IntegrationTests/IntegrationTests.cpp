@@ -35,7 +35,7 @@ namespace IntegrationTests
 		TEST_METHOD(TOK_LEX_02)
 		{ 
 			ITEM i = createItem('<');
-			TOKENTYPE actual = getType(i);
+			TOKENTYPE actual = getType(i.data);
 
 			Assert::AreEqual((int)MOVE_LEFT, (int)actual);
 		}
@@ -44,7 +44,7 @@ namespace IntegrationTests
 		TEST_METHOD(TOK_LEX_03) 
 		{
 			ITEM i = createItem('Q');
-			TOKENTYPE actual = getType(i);
+			TOKENTYPE actual = getType(i.data);
 			
 			Assert::AreEqual((int)INVALID, (int)actual);
 		}
@@ -53,7 +53,9 @@ namespace IntegrationTests
 		TEST_METHOD(QUE_LEX_04)
 		{
 			ITEM i = createItem('+');
-			TOKEN t = createToken(i, getType(i));
+
+			TOKEN t = createToken(i, getType(i.data));
+
 			CHARQUEUE* q = initQueue();
 			enqueue(q, createNode(t));
 			int result = errorNullTokenList();
@@ -68,7 +70,9 @@ namespace IntegrationTests
 			CHARQUEUE* cq = initQueue();
 			for(int i = 0; i < 3; i++){
 				ITEM item = createItem(string[i]);
-				TOKEN t = createToken(item, getType(item));
+
+				TOKEN t = createToken(item, getType(item.data));
+
 				QNODE* n = createNode(t);
 				enqueue(cq, n);
 			}
@@ -106,7 +110,9 @@ namespace IntegrationTests
 		TEST_METHOD(OUT_LEX_07)
 		{
 			ITEM i = createItem('[');
-			TOKENTYPE type = getType(i);
+
+			TOKENTYPE type = getType(i.data);
+
 			TOKEN token = createToken(i, type);
 
 			const char* expected = "JUMP BACK";
@@ -273,7 +279,9 @@ namespace IntegrationTests
 			enqueue(cq, createNode(t4));
 			PTREENODE test = parseProgram(cq);	//manual: PTREENODE can assign to parseProgram
 			Assert::IsNotNull(test);
-			while (cq != NULL) {
+
+			while (cq->head != NULL) {
+
 				dequeue(cq);
 			}
 		};
