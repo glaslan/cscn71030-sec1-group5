@@ -1,10 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "evaluator.h"
 #define PROGRAM_LENGTH 5000
+#define PROGRAM_DEPTH 5000
 
 PTREENODE jumpStart = NULL;
-TOKENTYPE program[PROGRAM_LENGTH];
+TOKENTYPE program[PROGRAM_LENGTH][PROGRAM_DEPTH];
 int programPtr = 0;
+int programRow = 0;
 char tape[MAX_TAPE];
 int idx = 0;
 
@@ -24,8 +26,14 @@ bool rakeTree(PTREENODE p)
 	// in order traversal
 	rakeTree(p->left);
 	t = *p;
-	program[programPtr] = t.token.t;
-	programPtr++;
+	program[programPtr][programRow] = t.token.t;
+    if (programPtr < PROGRAM_LENGTH) {
+        programPtr++;
+    }
+    else {
+        programPtr = 0;
+        programRow++;
+    }
 	rakeTree(p->right);
 }
 
@@ -33,16 +41,17 @@ int Eval(PTREENODE p, FILE* out)
 {
     //traverseTree(p);
     rakeTree(p);
-    program[programPtr] = END_TOKEN;
+    program[programPtr][programRow] = END_TOKEN;
     /*for (int k = 0; k < programPtr; k++) {
         printf("%d", program[k]);
     }*/
     programPtr = 0;
+    programRow = 0;
 
     bool getOut = false;
     while (!getOut)
     {
-        switch (program[programPtr])
+        switch (program[programPtr][programRow])
         {
         case 0:
             decdex(&idx);
@@ -83,8 +92,13 @@ int Eval(PTREENODE p, FILE* out)
         default:
             break;
         }
-        if (programPtr < PROGRAM_LENGTH)
+        if (programPtr < PROGRAM_LENGTH) {
             programPtr++;
+        }
+        else {
+            programPtr = 0;
+            programRow++;
+        }
     }
 }
 
@@ -140,7 +154,7 @@ void jumpPast(char tape[], int i)
     //printf("Jump End\n");
     if (tape[i] != 0)
     {
-        while (program[programPtr] != JUMP_BACK)
+        while (program[programPtr][programRow] != JUMP_BACK)
         {
             programPtr--;
         }
@@ -152,7 +166,7 @@ void jumpBack(char tape[], int i)
     //printf("Jump back\n");
     if (tape[i] == 0)
     {
-        while (program[programPtr] != JUMP_PAST)
+        while (program[programPtr][programRow] != JUMP_PAST)
         {
             programPtr++;
         }
