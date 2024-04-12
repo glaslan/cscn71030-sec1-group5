@@ -17,6 +17,7 @@ PTREENODE addNode(PTREENODE p, TOKEN t) {
 	if (p == NULL) {
 		return createTreeNode(t);
 	}
+
 	p->right = addNode(p->right, t);
 	return p;
 }

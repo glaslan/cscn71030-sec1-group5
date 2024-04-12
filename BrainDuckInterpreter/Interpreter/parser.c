@@ -28,10 +28,12 @@ PTREENODE parseProgram(CHARQUEUE* cq) {
 		errorNullTokenList();
 	}
 	PTREENODE root = createTreeNode(cq->head->token);
+
 	cq->head = cq->head->next;
 	int count = 0;
 	do {
 		switch (cq->head->token.t) {
+
 		case 0: 
 			parseShiftLeft(root, cq->head);
 			break;
@@ -75,6 +77,7 @@ PTREENODE parseProgram(CHARQUEUE* cq) {
 		count++;
 		cq->head = cq->head->next;
 	} while (cq->head != NULL);
+
 	//errorNoEOFToken();
 	return root;
 }

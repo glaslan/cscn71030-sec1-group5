@@ -21,8 +21,10 @@ int main(int argc, char* argv[]) {
 		fprintf(stderr, "Provide a path to the file\n");
 		exit(EXIT_FAILURE);
 	}
+
 	FILE* fp = fopen(argv[1], "r");
 	FILE* out = fopen("output", "w");
+
 	if (fp == NULL) {
 		fprintf(stderr, "Provide a valid file path\n");
 		exit(EXIT_FAILURE);
@@ -31,13 +33,17 @@ int main(int argc, char* argv[]) {
 	int i = 0;
 	while ((i = fgetc(fp)) != EOF) {
 		ITEM item = createItem(i);
+
 		TOKEN token = createToken(item, getType(item.data));
+
 		enqueue(cq, createNode(token));
 	}
 	fclose(fp);
 	PTREENODE astRoot = parseProgram(&cq);
+
 	ini();
 	Eval(astRoot, out);
 	fclose(out);
+
 	return 0;
 }

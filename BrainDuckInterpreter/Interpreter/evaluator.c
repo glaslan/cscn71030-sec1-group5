@@ -18,6 +18,7 @@ bool rakeTree(PTREENODE p)
 {
 	if (p == NULL) {
 		return false;
+
 	}
 	TREENODE t;
 	// in order traversal
@@ -132,6 +133,7 @@ void decdex(int* idx)
 	if (*idx <0)
 		*idx = MAX_TAPE-1;
 }
+
 
 void jumpPast(char tape[], int i)
 {
