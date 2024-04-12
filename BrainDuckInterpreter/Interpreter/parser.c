@@ -28,42 +28,42 @@ PTREENODE parseProgram(CHARQUEUE* cq) {
 		errorNullTokenList();
 	}
 	PTREENODE root = createTreeNode(cq->head->token);
+	cq->head = cq->head->next;
 	int count = 0;
 	do {
-		QNODE* qn = cq->head;
-		switch (qn->token.t) {
+		switch (cq->head->token.t) {
 		case 0: 
-			parseShiftLeft(root, qn);
+			parseShiftLeft(root, cq->head);
 			break;
 		case 1:
-			parseShiftRight(root, qn);
+			parseShiftRight(root, cq->head);
 			break;
 		case 2:
-			parseIncrement(root, qn);
+			parseIncrement(root, cq->head);
 			break;
 		case 3:
-			parseDecrement(root, qn);
+			parseDecrement(root, cq->head);
 			break;
 		case 4:
-			parseInput(root, qn);
+			parseInput(root, cq->head);
 			break;
 		case 5:
-			parseOutput(root, qn);
+			parseOutput(root, cq->head);
 			break;
 		case 6:
-			parseJumpForward(root, qn);
+			parseJumpForward(root, cq->head);
 			break;
 		case 7:
-			parseJumpBack(root, qn);
+			parseJumpBack(root, cq->head);
 			break;
 		case 8:
-			parseDouble(root, qn);
+			parseDouble(root, cq->head);
 			break;
 		case 9:
-			parseHalve(root, qn);
+			parseHalve(root, cq->head);
 			break;
 		case 10:
-			parseRandom(root, qn);
+			parseRandom(root, cq->head);
 			break;
 		case 11:
 			// End token received
@@ -75,7 +75,8 @@ PTREENODE parseProgram(CHARQUEUE* cq) {
 		count++;
 		cq->head = cq->head->next;
 	} while (cq->head != NULL);
-	errorNoEOFToken();
+	//errorNoEOFToken();
+	return root;
 }
 
 bool parseShiftRight(PTREENODE tn, QNODE* qn) {

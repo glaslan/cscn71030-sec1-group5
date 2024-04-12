@@ -148,9 +148,6 @@
     <ClInclude Include="const.h" />
     <ClInclude Include="evaluator.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="helloWorld.quack" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
